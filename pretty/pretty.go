@@ -11,7 +11,7 @@ import (
 // PrintProgress draw a progress bar in the terminal. The percent takes values from 0 to 1.
 func PrintProgress(percent float64) {
 	if percent < 0 || percent > 1 {
-		panic("The percent takes values from 0 to 1")
+		panic("pretty: the percent takes values from 0 to 1")
 	}
 	out, _ := os.Stdout.Stat()
 	// Identify if we are displaying to a terminal or through a pipe or redirect.

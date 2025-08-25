@@ -23,6 +23,7 @@ The full documents can be viewed at <https://pkg.go.dev/github.com/libraries/go>
 | [lru](./lru)                   | Package lru implements an LRU cache                                     |
 | [pretty](./pretty)             | Package pretty provides utilities for beautifying console output        |
 | [priority](./priority)         | Package priority implements a priority mutex                            |
+| [rate](./rate)                 | Package rate provides a rate limiter                                    |
 
 ## License
 
