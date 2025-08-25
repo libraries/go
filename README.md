@@ -22,6 +22,7 @@ The full documents can be viewed at <https://pkg.go.dev/github.com/libraries/go>
 | [gracefulexit](./gracefulexit) | Package gracefulexit provides a method to exit the program gracefully   |
 | [lru](./lru)                   | Package lru implements an LRU cache                                     |
 | [pretty](./pretty)             | Package pretty provides utilities for beautifying console output        |
+| [priority](./priority)         | Package priority implements a priority mutex                            |
 
 ## License
 
