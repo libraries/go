@@ -3,6 +3,7 @@
 package rate
 
 import (
+	"log"
 	"math"
 	"sync"
 	"time"
@@ -26,10 +27,10 @@ func (l *Limits) Peek(n uint64) bool {
 	if cycles > 0 {
 		l.last = l.last.Add(l.step * time.Duration(cycles))
 		if cycles > math.MaxUint64/l.addition {
-			panic("rate: overflow")
+			log.Panicln("rate: overflow")
 		}
 		if l.size > math.MaxUint64-l.addition*cycles {
-			panic("rate: overflow")
+			log.Panicln("rate: overflow")
 		}
 		l.size = l.size + l.addition*cycles
 		l.size = min(l.size, l.capacity)
@@ -45,10 +46,10 @@ func (l *Limits) Wait(n uint64) {
 	if cycles > 0 {
 		l.last = l.last.Add(l.step * time.Duration(cycles))
 		if cycles > math.MaxUint64/l.addition {
-			panic("rate: overflow")
+			log.Panicln("rate: overflow")
 		}
 		if l.size > math.MaxUint64-l.addition*cycles {
-			panic("rate: overflow")
+			log.Panicln("rate: overflow")
 		}
 		l.size = l.size + l.addition*cycles
 		l.size = min(l.size, l.capacity)

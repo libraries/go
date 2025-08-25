@@ -2,6 +2,7 @@
 package cron
 
 import (
+	"log"
 	"time"
 )
 
@@ -10,7 +11,7 @@ import (
 // after aligning to the next period boundary.
 func Cron(e time.Duration, d time.Duration) <-chan struct{} {
 	if d >= e {
-		panic("cron: the delay should be less than the time elapsed between events")
+		log.Panicln("cron: the delay should be less than the time elapsed between events")
 	}
 	r := make(chan struct{})
 	go func() {
