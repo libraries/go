@@ -16,7 +16,7 @@ func main() {
 	log.Println("main: listen and server on 127.0.0.1:8080")
 	l, err := net.Listen("tcp", "127.0.0.1:8080")
 	if err != nil {
-		panic(err)
+		log.Panicln("main:", err)
 	}
 	server := http.Server{}
 	go server.Serve(l)

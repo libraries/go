@@ -14,18 +14,19 @@ $ go get -u github.com/libraries/go
 
 The full documents can be viewed at <https://pkg.go.dev/github.com/libraries/go>
 
-|           Repository           |                               Description                               |
-| ------------------------------ | ----------------------------------------------------------------------- |
-| [acdb](./acdb)                 | Package acdb manages objects between memory and file system             |
-| [cron](./cron)                 | Package cron provides a simple way to schedule tasks at fixed intervals |
-| [doa](./doa)                   | Package doa provides some easy ways to make you panic down the program  |
-| [gool](./gool)                 | Package gool offers a high-level API for running tasks asynchronously   |
-| [gracefulexit](./gracefulexit) | Package gracefulexit provides a method to exit the program gracefully   |
-| [lru](./lru)                   | Package lru implements an LRU cache                                     |
-| [once](./once)                 | Package once provides a generic once type                               |
-| [pretty](./pretty)             | Package pretty provides utilities for beautifying console output        |
-| [priority](./priority)         | Package priority implements a priority mutex                            |
-| [rate](./rate)                 | Package rate provides a rate limiter                                    |
+|           Repository           |                                  Description                                  |
+| ------------------------------ | ----------------------------------------------------------------------------- |
+| [acdb](./acdb)                 | Package acdb manages objects between memory and file system                   |
+| [cron](./cron)                 | Package cron provides a simple way to schedule tasks at fixed intervals       |
+| [doa](./doa)                   | Package doa provides some easy ways to make you panic down the program        |
+| [gool](./gool)                 | Package gool offers a high-level API for running tasks asynchronously         |
+| [gracefulexit](./gracefulexit) | Package gracefulexit provides a method to exit the program gracefully         |
+| [jany](./jany)                 | Package jany provides a set of functions to parse and interact with json data |
+| [lru](./lru)                   | Package lru implements an LRU cache                                           |
+| [once](./once)                 | Package once provides a generic once type                                     |
+| [pretty](./pretty)             | Package pretty provides utilities for beautifying console output              |
+| [priority](./priority)         | Package priority implements a priority mutex                                  |
+| [rate](./rate)                 | Package rate provides a rate limiter                                          |
 
 ## License
 
