@@ -18,6 +18,7 @@ The full documents can be viewed at <https://pkg.go.dev/github.com/libraries/go>
 | -------------- | ----------------------------------------------------------------------- |
 | [cron](./cron) | Package cron provides a simple way to schedule tasks at fixed intervals |
 | [doa](./doa)   | Package doa provides some easy ways to make you panic down the program  |
+| [lru](./lru)   | Package lru implements an LRU cache                                     |
 
 ## License
 
