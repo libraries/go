@@ -12,6 +12,8 @@ $ go get -u github.com/libraries/go
 
 ## Repositories
 
+The full documents can be viewed at <https://pkg.go.dev/github.com/libraries/go>
+
 - [doa](./doa) -- Package doa is the abbreviation of the "Dead or alive". It provides some easy ways to make you panic down the program.
 
 ## License
