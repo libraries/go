@@ -15,8 +15,8 @@ type Once[T any] struct {
 	once sync.Once
 }
 
-// Get returns the initialized object, creating it if necessary.
-func (s *Once[T]) Get() T {
+// Do returns the initialized object, creating it if necessary.
+func (s *Once[T]) Do() T {
 	s.once.Do(func() {
 		s.inst = s.init()
 	})
