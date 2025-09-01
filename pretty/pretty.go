@@ -48,7 +48,7 @@ func PrintTable(data [][]string) {
 	line := make([]string, len(data[0]))
 	for j, c := range data[0] {
 		l := size[j]
-		line[j] = strings.Repeat(" ", l-len(c)) + c
+		line[j] = c + strings.Repeat(" ", l-len(c))
 	}
 	log.Println("pretty:", strings.Join(line, " "))
 	for i, c := range size {
@@ -58,7 +58,7 @@ func PrintTable(data [][]string) {
 	for _, r := range data[1:] {
 		for j, c := range r {
 			l := size[j]
-			line[j] = strings.Repeat(" ", l-len(c)) + c
+			line[j] = c + strings.Repeat(" ", l-len(c))
 		}
 		log.Println("pretty:", strings.Join(line, " "))
 	}
