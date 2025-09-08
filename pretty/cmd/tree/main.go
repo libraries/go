@@ -15,18 +15,18 @@ func walk(path string) *pretty.Tree {
 	if err != nil {
 		log.Panicln("main:", err)
 	}
-	node := &pretty.Tree{Value: info.Name()}
+	node := &pretty.Tree{Name: info.Name()}
 	if info.IsDir() {
 		l, err := os.ReadDir(path)
 		if err != nil {
 			log.Panicln("main:", err)
 		}
 		for _, e := range l {
-			node.Elems = append(node.Elems, walk(filepath.Join(path, e.Name())))
+			node.Leaf = append(node.Leaf, walk(filepath.Join(path, e.Name())))
 		}
 		// Sort the elements alphabetically for consistent output.
-		slices.SortFunc(node.Elems, func(a, b *pretty.Tree) int {
-			return strings.Compare(a.Value, b.Value)
+		slices.SortFunc(node.Leaf, func(a, b *pretty.Tree) int {
+			return strings.Compare(a.Name, b.Name)
 		})
 	}
 	return node

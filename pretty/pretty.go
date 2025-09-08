@@ -69,19 +69,19 @@ func PrintTable(data [][]string) {
 
 // Tree represents a node in a tree structure.
 type Tree struct {
-	Value string
-	Elems []*Tree
+	Name string
+	Leaf []*Tree
 }
 
 func printTree(tree *Tree, prefix string) {
-	for i, elem := range tree.Elems {
-		isLast := i == len(tree.Elems)-1
+	for i, elem := range tree.Leaf {
+		isLast := i == len(tree.Leaf)-1
 		branch := "├── "
 		if isLast {
 			branch = "└── "
 		}
-		log.Println("pretty:", prefix+branch+elem.Value)
-		if len(elem.Elems) > 0 {
+		log.Println("pretty:", prefix+branch+elem.Name)
+		if len(elem.Leaf) > 0 {
 			middle := "│   "
 			if isLast {
 				middle = "    "
@@ -93,6 +93,6 @@ func printTree(tree *Tree, prefix string) {
 
 // PrintTree prints the tree structure starting from the root node.
 func PrintTree(tree *Tree) {
-	log.Println("pretty:", tree.Value)
+	log.Println("pretty:", tree.Name)
 	printTree(tree, "")
 }
