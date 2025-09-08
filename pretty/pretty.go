@@ -66,3 +66,34 @@ func PrintTable(data [][]string) {
 		log.Println("pretty:", strings.Join(line, " "))
 	}
 }
+
+// Tree represents a node in a tree structure.
+type Tree struct {
+	Value string
+	Elems []*Tree
+}
+
+// A helper function to recursively print the tree structure.
+func printTree(tree *Tree, prefix string) {
+	for i, elem := range tree.Elems {
+		isLast := i == len(tree.Elems)-1
+		branch := "├── "
+		if isLast {
+			branch = "└── "
+		}
+		log.Println("pretty:", prefix+branch+elem.Value)
+		if len(elem.Elems) > 0 {
+			middle := "│   "
+			if isLast {
+				middle = "    "
+			}
+			printTree(elem, prefix+middle)
+		}
+	}
+}
+
+// PrintTree prints the tree structure starting from the root node.
+func PrintTree(tree *Tree) {
+	log.Println("pretty:", tree.Value)
+	printTree(tree, "")
+}
