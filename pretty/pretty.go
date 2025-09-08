@@ -65,6 +65,32 @@ func NewProgress() *Progress {
 	}
 }
 
+// ProgressWriter is an io.Writer that updates a progress bar as data is written.
+type ProgressWriter struct {
+	p *Progress
+	m uint64
+	n uint64
+}
+
+// Write writes data to the ProgressWriter and updates the progress bar.
+func (p *ProgressWriter) Write(b []byte) (int, error) {
+	l := len(b)
+	p.m += uint64(l)
+	p.p.Update(float64(p.m) / float64(p.n))
+	return l, nil
+}
+
+// NewProgressWriter creates a new ProgressWriter for a task of the given size.
+func NewProgressWriter(size uint64) *ProgressWriter {
+	p := NewProgress()
+	p.Update(0)
+	return &ProgressWriter{
+		p: p,
+		m: 0,
+		n: size,
+	}
+}
+
 // Table represents a table structure with a head and body.
 type Table struct {
 	Head []string
