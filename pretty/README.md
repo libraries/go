@@ -25,3 +25,20 @@ $ go run cmd/table/main.go
 2025/09/01 14:03:52 pretty: Perth     5386 1554769    869.4
 2025/09/01 14:03:52 pretty: Sydney    2058 4336374    1214.8
 ```
+
+**Tree**
+
+```sh
+$ go run cmd/tree/main.go
+
+2025/09/08 16:39:26 pretty: .
+2025/09/08 16:39:26 pretty: ├── README.md
+2025/09/08 16:39:26 pretty: ├── cmd
+2025/09/08 16:39:26 pretty: │   ├── progress
+2025/09/08 16:39:26 pretty: │   │   └── main.go
+2025/09/08 16:39:26 pretty: │   ├── table
+2025/09/08 16:39:26 pretty: │   │   └── main.go
+2025/09/08 16:39:26 pretty: │   └── tree
+2025/09/08 16:39:26 pretty: │       └── main.go
+2025/09/08 16:39:26 pretty: └── pretty.go
+```
