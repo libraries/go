@@ -13,7 +13,10 @@ func PrintProgress(percent float64) {
 	if percent < 0 || percent > 1 {
 		log.Panicln("pretty: the percent takes values from 0 to 1")
 	}
-	out, _ := os.Stdout.Stat()
+	out, err := os.Stdout.Stat()
+	if err != nil {
+		log.Panicln("pretty: cannot stat stdout:", err)
+	}
 	// Identify if we are displaying to a terminal or through a pipe or redirect.
 	if out.Mode()&os.ModeCharDevice == os.ModeCharDevice {
 		// Save or restore cursor position.
