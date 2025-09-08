@@ -8,25 +8,37 @@ import (
 	"strings"
 )
 
-// PrintProgress draw a progress bar in the terminal. The percent takes values from 0 to 1.
-func PrintProgress(percent float64) {
-	if percent < 0 || percent > 1 {
-		log.Panicln("pretty: the percent takes values from 0 to 1")
+// Progress represents a progress bar in the terminal.
+type Progress struct {
+	chardev bool
+	current float64
+}
+
+// Update updates the progress bar to the specified percent (0 to 1).
+func (p *Progress) Update(percent float64) {
+	if percent > 1 {
+		log.Panicln("pretty: the percent cannot be greater than 1")
 	}
-	out, err := os.Stdout.Stat()
-	if err != nil {
-		log.Panicln("pretty: cannot stat stdout:", err)
+	if percent < p.current {
+		log.Panicln("pretty: the percent cannot be decreased")
 	}
-	// Identify if we are displaying to a terminal or through a pipe or redirect.
-	if out.Mode()&os.ModeCharDevice == os.ModeCharDevice {
-		// Save or restore cursor position.
-		if percent == 0 {
-			log.Writer().Write([]byte{0x1b, 0x37})
-		}
-		if percent != 0 {
-			log.Writer().Write([]byte{0x1b, 0x38})
-		}
+	if percent != 0 && percent != 1 && percent-p.current < 0.01 {
+		// Only update if the change is significant to avoid flickering.
+		return
 	}
+	if percent == 1 && percent == p.current {
+		// No need to update if already at 100%.
+		return
+	}
+	if percent == 0 && p.chardev {
+		// Save cursor position.
+		log.Writer().Write([]byte{0x1b, 0x37})
+	}
+	if percent != 0 && p.chardev {
+		// Load cursor position.
+		log.Writer().Write([]byte{0x1b, 0x38})
+	}
+	p.current = percent
 	cap := int(percent * 44)
 	buf := []byte("[                                             ] 000%")
 	for i := 1; i < cap+1; i++ {
@@ -38,6 +50,19 @@ func PrintProgress(percent float64) {
 	buf[49] = num[1]
 	buf[50] = num[2]
 	log.Println("pretty:", string(buf))
+}
+
+// NewProgress creates a new Progress instance.
+func NewProgress() *Progress {
+	s, err := os.Stdout.Stat()
+	if err != nil {
+		log.Panicln("pretty: cannot stat stdout:", err)
+	}
+	return &Progress{
+		// Identify if we are displaying to a terminal or through a pipe or redirect.
+		chardev: s.Mode()&os.ModeCharDevice == os.ModeCharDevice,
+		current: 0,
+	}
 }
 
 // PrintTable easily draw tables in terminal/console applications from a list of lists of strings.
