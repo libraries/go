@@ -73,7 +73,6 @@ type Tree struct {
 	Elems []*Tree
 }
 
-// A helper function to recursively print the tree structure.
 func printTree(tree *Tree, prefix string) {
 	for i, elem := range tree.Elems {
 		isLast := i == len(tree.Elems)-1
