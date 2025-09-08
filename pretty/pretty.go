@@ -73,9 +73,9 @@ type Tree struct {
 	Leaf []*Tree
 }
 
-func printTree(tree *Tree, prefix string) {
-	for i, elem := range tree.Leaf {
-		isLast := i == len(tree.Leaf)-1
+func (t *Tree) print(prefix string) {
+	for i, elem := range t.Leaf {
+		isLast := i == len(t.Leaf)-1
 		branch := "├── "
 		if isLast {
 			branch = "└── "
@@ -86,13 +86,18 @@ func printTree(tree *Tree, prefix string) {
 			if isLast {
 				middle = "    "
 			}
-			printTree(elem, prefix+middle)
+			elem.print(prefix + middle)
 		}
 	}
 }
 
 // PrintTree prints the tree structure starting from the root node.
-func PrintTree(tree *Tree) {
-	log.Println("pretty:", tree.Name)
-	printTree(tree, "")
+func (t *Tree) Print() {
+	log.Println("pretty:", t.Name)
+	t.print("")
+}
+
+// NewTree creates a new Tree node with the given name.
+func NewTree(name string) *Tree {
+	return &Tree{Name: name}
 }
