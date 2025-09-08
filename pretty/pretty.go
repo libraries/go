@@ -65,31 +65,45 @@ func NewProgress() *Progress {
 	}
 }
 
-// PrintTable easily draw tables in terminal/console applications from a list of lists of strings.
-func PrintTable(data [][]string) {
-	size := make([]int, len(data[0]))
-	for _, r := range data {
-		for j, c := range r {
-			size[j] = max(size[j], len(c))
+// Table represents a table structure with a head and body.
+type Table struct {
+	Head []string
+	Body [][]string
+}
+
+// Print prints the table to the console with proper alignment.
+func (t *Table) Print() {
+	size := make([]int, len(t.Head))
+	for i, c := range t.Head {
+		size[i] = len(c)
+	}
+	for _, r := range t.Body {
+		for i, c := range r {
+			size[i] = max(size[i], len(c))
 		}
 	}
-	line := make([]string, len(data[0]))
-	for j, c := range data[0] {
-		l := size[j]
-		line[j] = c + strings.Repeat(" ", l-len(c))
+	line := make([]string, len(t.Head))
+	for i, c := range t.Head {
+		l := size[i]
+		line[i] = c + strings.Repeat(" ", l-len(c))
 	}
 	log.Println("pretty:", strings.Join(line, " "))
-	for i, c := range size {
-		line[i] = strings.Repeat("-", c)
+	for i, n := range size {
+		line[i] = strings.Repeat("-", n)
 	}
 	log.Println("pretty:", strings.Join(line, "-"))
-	for _, r := range data[1:] {
-		for j, c := range r {
-			l := size[j]
-			line[j] = c + strings.Repeat(" ", l-len(c))
+	for _, r := range t.Body {
+		for i, c := range r {
+			l := size[i]
+			line[i] = c + strings.Repeat(" ", l-len(c))
 		}
 		log.Println("pretty:", strings.Join(line, " "))
 	}
+}
+
+// NewTable creates a new Table instance.
+func NewTable() *Table {
+	return &Table{}
 }
 
 // Tree represents a node in a tree structure.
@@ -116,7 +130,7 @@ func (t *Tree) print(prefix string) {
 	}
 }
 
-// PrintTree prints the tree structure starting from the root node.
+// Print prints the tree structure starting from the root node.
 func (t *Tree) Print() {
 	log.Println("pretty:", t.Name)
 	t.print("")
