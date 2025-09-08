@@ -7,10 +7,11 @@ import (
 )
 
 func main() {
-	pretty.PrintProgress(0)
-	for i := range 100 {
-		time.Sleep(time.Millisecond * 16)
-		pretty.PrintProgress(float64(i+1) / 100)
+	progress := pretty.NewProgress()
+	progress.Update(0)
+	for i := range 1024 {
+		time.Sleep(time.Millisecond * 4)
+		progress.Update(float64(i+1) / 1024)
 	}
-	pretty.PrintProgress(1)
+	progress.Update(1)
 }

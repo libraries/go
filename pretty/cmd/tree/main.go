@@ -15,7 +15,7 @@ func walk(path string) *pretty.Tree {
 	if err != nil {
 		log.Panicln("main:", err)
 	}
-	node := &pretty.Tree{Name: info.Name()}
+	node := pretty.NewTree(info.Name())
 	if info.IsDir() {
 		l, err := os.ReadDir(path)
 		if err != nil {
@@ -33,5 +33,5 @@ func walk(path string) *pretty.Tree {
 }
 
 func main() {
-	pretty.PrintTree(walk("."))
+	walk(".").Print()
 }
