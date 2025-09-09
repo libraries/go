@@ -15,7 +15,7 @@ type Progress struct {
 }
 
 // Update updates the progress bar to the specified percent (0 to 1).
-func (p *Progress) Update(percent float64) {
+func (p *Progress) Print(percent float64) {
 	if percent > 1 {
 		log.Panicln("pretty: the percent cannot be greater than 1")
 	}
@@ -76,23 +76,24 @@ type ProgressWriter struct {
 func (p *ProgressWriter) Write(b []byte) (int, error) {
 	l := len(b)
 	p.m += int64(l)
-	p.p.Update(float64(p.m) / float64(p.n))
+	p.p.Print(float64(p.m) / float64(p.n))
 	return l, nil
 }
 
 // NewProgressWriter creates a new ProgressWriter for a task of the given size.
-func NewProgressWriter(size int64) *ProgressWriter {
+func NewProgressWriter(n int64) *ProgressWriter {
 	p := NewProgress()
-	p.Update(0)
+	p.Print(0)
 	return &ProgressWriter{
 		p: p,
 		m: 0,
-		n: size,
+		n: n,
 	}
 }
 
 // Table represents a table structure with a head and body.
 type Table struct {
+	Conf []string
 	Head []string
 	Body [][]string
 }
