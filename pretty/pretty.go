@@ -102,8 +102,12 @@ func NewProgressWriter(n int64) *ProgressWriter {
 
 // Table represents a table structure with a head and body.
 type Table struct {
+	// Conf specifies the alignment for each column: "<" for left, ">" for right.
+	// If conf has fewer entries than head, the remaining columns default to left alignment ("<").
 	Conf []string
+	// Head represents the head of the table.
 	Head []string
+	// Body represents the body of the table.
 	Body [][]string
 }
 
