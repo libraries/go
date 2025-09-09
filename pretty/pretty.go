@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"slices"
 	"strings"
 )
 
@@ -108,6 +109,10 @@ type Table struct {
 
 // Print prints the table to the console with proper alignment.
 func (t *Table) Print() {
+	conf := slices.Clone(t.Conf)
+	for range len(t.Head) - len(conf) {
+		conf = append(conf, "<")
+	}
 	size := make([]int, len(t.Head))
 	for i, c := range t.Head {
 		size[i] = len(c)
@@ -120,7 +125,12 @@ func (t *Table) Print() {
 	line := make([]string, len(t.Head))
 	for i, c := range t.Head {
 		l := size[i]
-		line[i] = c + strings.Repeat(" ", l-len(c))
+		switch conf[i] {
+		case "<":
+			line[i] = c + strings.Repeat(" ", l-len(c))
+		case ">":
+			line[i] = strings.Repeat(" ", l-len(c)) + c
+		}
 	}
 	log.Println("pretty:", strings.Join(line, " "))
 	for i, n := range size {
@@ -130,7 +140,12 @@ func (t *Table) Print() {
 	for _, r := range t.Body {
 		for i, c := range r {
 			l := size[i]
-			line[i] = c + strings.Repeat(" ", l-len(c))
+			switch conf[i] {
+			case "<":
+				line[i] = c + strings.Repeat(" ", l-len(c))
+			case ">":
+				line[i] = strings.Repeat(" ", l-len(c)) + c
+			}
 		}
 		log.Println("pretty:", strings.Join(line, " "))
 	}

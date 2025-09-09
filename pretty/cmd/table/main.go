@@ -7,6 +7,7 @@ import (
 func main() {
 	table := pretty.NewTable()
 	table.Head = []string{"City name", "Area", "Population", "Annual Rainfall"}
+	table.Conf = []string{"<", ">", ">", ">"}
 	table.Body = [][]string{
 		{"Adelaide", "1295", "1158259", "600.5"},
 		{"Brisbane", "5905", "1857594", "1146.4"},
