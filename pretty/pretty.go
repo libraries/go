@@ -81,6 +81,14 @@ func (p *ProgressWriter) Write(b []byte) (int, error) {
 }
 
 // NewProgressWriter creates a new ProgressWriter for a task of the given size.
+//
+// For example, to display progress while reading from a reader:
+//
+//	reader := io.TeeReader(io.LimitReader(os.Stdin, 1024), NewProgressWriter(1024))
+//
+// Or to display progress while writing to a writer:
+//
+//	writer := io.MultiWriter(os.Stdout, NewProgressWriter(1024))
 func NewProgressWriter(n int64) *ProgressWriter {
 	p := NewProgress()
 	p.Print(0)
