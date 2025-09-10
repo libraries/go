@@ -5,7 +5,7 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/libraries/go/gracefulexit"
+	"github.com/mohanson/go/gracefulexit"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/libraries/go/pretty"
+	"github.com/mohanson/go/pretty"
 )
 
 func main() {

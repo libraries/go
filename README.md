@@ -7,12 +7,12 @@ These codes are supplementary to the golang standard library. We provide some co
 To use go libraries, ensure you have go installed (version 1.23 or higher is recommended). Install the library with the following command:
 
 ```sh
-$ go get -u github.com/libraries/go
+$ go get -u github.com/mohanson/go
 ```
 
 ## Repositories
 
-The full documents can be viewed at <https://pkg.go.dev/github.com/libraries/go>
+The full documents can be viewed at <https://pkg.go.dev/github.com/mohanson/go>
 
 |           Repository           |                                  Description                                  |
 | ------------------------------ | ----------------------------------------------------------------------------- |

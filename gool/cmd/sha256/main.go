@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/libraries/go/gool"
+	"github.com/mohanson/go/gool"
 )
 
 func once() {

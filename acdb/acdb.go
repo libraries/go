@@ -8,7 +8,7 @@ import (
 	"path"
 	"sync"
 
-	"github.com/libraries/go/lru"
+	"github.com/mohanson/go/lru"
 )
 
 // Driver is the interface that wraps the Set/Get and Del method.

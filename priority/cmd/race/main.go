@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/libraries/go/priority"
+	"github.com/mohanson/go/priority"
 )
 
 const (

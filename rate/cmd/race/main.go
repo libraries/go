@@ -5,7 +5,7 @@ import (
 	"math/rand/v2"
 	"time"
 
-	"github.com/libraries/go/rate"
+	"github.com/mohanson/go/rate"
 )
 
 const (

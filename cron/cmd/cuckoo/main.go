@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/libraries/go/cron"
+	"github.com/mohanson/go/cron"
 )
 
 func main() {

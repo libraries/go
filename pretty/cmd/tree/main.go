@@ -7,7 +7,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/libraries/go/pretty"
+	"github.com/mohanson/go/pretty"
 )
 
 func walk(path string) *pretty.Tree {

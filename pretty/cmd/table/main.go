@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/libraries/go/pretty"
+	"github.com/mohanson/go/pretty"
 )
 
 func main() {
